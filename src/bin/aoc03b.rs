@@ -65,6 +65,7 @@ impl Map {
         std::iter::from_fn(move || {
             if y < height {
                 let r = Some((x, y));
+
                 x += dx;
                 y += dy;
                 r
@@ -74,14 +75,15 @@ impl Map {
         })
     }
 
-    pub fn get(&self, x: usize, y: usize) -> Option<Tile> {
+    pub fn get(&self, x: usize, y: usize) -> Tile {
         assert!(y < self.height);
-        self.tiles.get((x % self.width) + y * self.width).copied()
+        self.tiles.get((x % self.width) + y * self.width).copied().unwrap()
     }
 
 
     pub fn traverse(&self, dx: usize, dy: usize) -> impl Iterator<Item = Tile> + '_ {
-        Self::gen(self.height, dx, dy).filter_map(move |(x, y)| self.get(x, y))
+        Self::gen(self.height, dx, dy)
+            .map(move |(x, y)| self.get(x, y))
     }
 }
 
