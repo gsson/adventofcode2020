@@ -57,11 +57,14 @@ impl Debug for Address {
 
 
 #[derive(Clone, Copy, Default)]
-struct Mask(u64, u64);
+struct Mask {
+    or: u64,
+    floating: u64
+}
 
 impl Debug for Mask {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        f.write_fmt(format_args!("or: {:36b}, floating: {:?}", self.0, self.1))
+        f.write_fmt(format_args!("or: {:36b}, floating: {:?}", self.or, self.floating))
     }
 }
 
@@ -78,22 +81,22 @@ impl Mask {
                 _ => unreachable!()
             }
         }
-        Self(or_mask & MAX, floating_mask & MAX)
+        Self { or: or_mask & MAX, floating: floating_mask & MAX }
     }
 
     fn floating_bits_permutation(&self, n: u64) -> u64 {
         unsafe {
-            core::arch::x86_64::_pdep_u64(n, self.1 as u64)
+            core::arch::x86_64::_pdep_u64(n, self.floating)
         }
     }
 
     fn floating_bits(&self) -> impl Iterator<Item=u64> + '_ {
-        (0..1 << self.1.count_ones())
+        (0..1 << self.floating.count_ones())
             .map(move |i| self.floating_bits_permutation(i))
     }
 
     fn apply(&self, address: Address) -> impl Iterator<Item=Address> + '_ {
-        let address = address.0 | self.0;
+        let address = address.0 | self.or;
         self.floating_bits()
             .map(move |f| Address(address ^ f))
     }
