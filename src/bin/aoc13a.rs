@@ -1,4 +1,3 @@
-#![feature(test)]
 #![feature(str_split_once)]
 
 use std::io::Read;
@@ -32,12 +31,6 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    extern crate test;
-
-    use test::bench::Bencher;
-
-    use crate::*;
-
     const EXAMPLE: &str = "939
 7,13,x,x,59,x,31,19";
 

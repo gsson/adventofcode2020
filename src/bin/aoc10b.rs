@@ -113,7 +113,7 @@ mod tests {
 
     #[test]
     fn test_jolts_1() {
-        let mut adapters = EXAMPLE1.lines()
+        let adapters = EXAMPLE1.lines()
             .map(|s| s.parse::<usize>().unwrap())
             .collect::<Vec<_>>();
 
@@ -125,7 +125,7 @@ mod tests {
 
     #[test]
     fn test_jolts_2() {
-        let mut adapters = EXAMPLE2.lines()
+        let adapters = EXAMPLE2.lines()
             .map(|s| s.parse::<usize>().unwrap())
             .collect::<Vec<_>>();
 

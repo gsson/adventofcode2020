@@ -1,5 +1,3 @@
-#![feature(test)]
-
 use std::io::Read;
 use std::fmt::{Debug, Formatter, Write};
 
@@ -125,10 +123,6 @@ impl Debug for Grid {
 
 #[cfg(test)]
 mod tests {
-    extern crate test;
-
-    use test::bench::Bencher;
-
     use crate::*;
 
     const INPUT1: &str = "L.LL.LL.LL

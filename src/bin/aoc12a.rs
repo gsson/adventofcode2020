@@ -1,5 +1,3 @@
-#![feature(test)]
-
 use std::io::Read;
 
 fn main() {
@@ -84,10 +82,6 @@ impl Ship {
 
 #[cfg(test)]
 mod tests {
-    extern crate test;
-
-    use test::bench::Bencher;
-
     use crate::*;
 
     const EXAMPLE: &str = "F10

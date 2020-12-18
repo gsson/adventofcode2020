@@ -1,4 +1,3 @@
-#![feature(test)]
 #![feature(str_split_once)]
 
 use std::io::Read;
@@ -132,10 +131,6 @@ impl Instruction {
 
 #[cfg(test)]
 mod tests {
-    extern crate test;
-
-    use test::bench::Bencher;
-
     use crate::*;
 
     const EXAMPLE: &str = "mask = 000000000000000000000000000000X1001X

@@ -1,7 +1,3 @@
-#![feature(test)]
-#![feature(str_split_once)]
-#![feature(map_first_last)]
-
 use std::collections::BTreeMap;
 use std::io::Read;
 use std::collections::btree_map::Entry;
@@ -60,10 +56,6 @@ fn is_valid(n: usize, v: &BTreeMap<usize, usize>) -> bool {
 
 #[cfg(test)]
 mod tests {
-    extern crate test;
-
-    use test::bench::Bencher;
-
     use crate::*;
 
     const EXAMPLE: (usize, &str) = (5, "35

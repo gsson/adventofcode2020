@@ -1,5 +1,3 @@
-#![feature(test)]
-
 use std::collections::HashMap;
 use std::io::Read;
 
@@ -58,10 +56,6 @@ impl Game {
 
 #[cfg(test)]
 mod tests {
-    extern crate test;
-
-    use test::bench::Bencher;
-
     use crate::*;
 
     const EXAMPLES: [(usize, &str); 7] = [
@@ -81,7 +75,7 @@ mod tests {
             assert_eq!(*expected, game.until(2020));
         }
     }
-    
+
     #[test]
     fn test_next() {
         let game = Game::new("0,3,6");

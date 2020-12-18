@@ -1,5 +1,3 @@
-#![feature(test)]
-
 use std::io::Read;
 
 fn main() {
@@ -33,10 +31,6 @@ fn find_jolt_differential(adapters: &[usize]) -> (usize, usize) {
 
 #[cfg(test)]
 mod tests {
-    extern crate test;
-
-    use test::bench::Bencher;
-
     use crate::*;
 
     const EXAMPLE1: &str = "16
@@ -86,7 +80,7 @@ mod tests {
 
     #[test]
     fn test_jolts_1() {
-        let mut adapters = EXAMPLE1.lines()
+        let adapters = EXAMPLE1.lines()
             .map(|s| s.parse::<usize>().unwrap())
             .collect::<Vec<_>>();
 
@@ -99,7 +93,7 @@ mod tests {
 
     #[test]
     fn test_jolts_2() {
-        let mut adapters = EXAMPLE2.lines()
+        let adapters = EXAMPLE2.lines()
             .map(|s| s.parse::<usize>().unwrap())
             .collect::<Vec<_>>();
 
